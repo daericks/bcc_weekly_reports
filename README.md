@@ -1,4 +1,4 @@
-# bcc_weekly_reports
+# Weekly cannabis testing in California
 
 ## ETL
 A script to clean up the data released weekly by the California BCC: https://bcc.ca.gov/licensees/weekly_reports.html
