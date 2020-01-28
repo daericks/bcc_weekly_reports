@@ -1,5 +1,6 @@
 import xlrd
 import pandas as pd
+from os import listdir
 
 # Functions
 # Find date from filename
@@ -84,7 +85,6 @@ def stringRemove(data, string):
 
 
 # Generate list of files
-from os import listdir
 data_dir2 = '../../data/'
 files = [f for f in listdir(data_dir2) if '.xlsx' in f]
 
