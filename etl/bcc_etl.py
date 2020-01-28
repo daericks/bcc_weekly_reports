@@ -118,7 +118,8 @@ del totals['Certificates of Analysis Received'] # This column is identical to 'T
 totals['Percent Failed'] = 100* totals['Failed Batches'] / totals['Tested Batches']
 
 # Save totals df
-print('Saving totals.csv...')
+data_save_path = '../../etl_data/'
+print('Saving totals.csv to ', data_save_path)
 totals.to_csv(path_or_buf='../../etl_data/totals.csv', index=False)
 print('Done.')
 
@@ -155,7 +156,7 @@ product_categories['Percent of Failures'] = 100 * product_categories['Failed Bat
 product_categories['Percent Tested'] = 100 * product_categories['Tested Batches'] / product_categories['Total Tested']
 
 # Save to file
-print('Saving product_categories...')
+print('Saving product_categories.csv to ', data_save_path)
 product_categories.to_csv(path_or_buf='../../etl_data/product_categories.csv', index=False)
 print('Done.')
 
@@ -184,6 +185,6 @@ fc_totals['Total Failed'] = fc_totals['Total Failed'].astype('int')
 fail_categories = fc_totals.merge(fail_categories, left_index=True, right_on='Date', how='right')
 fail_categories['Percent of Failures'] = 100 * fail_categories['Failed Batches'] / fail_categories['Total Failed']
 
-print('Saving fail_categories.csv...')
+print('Saving fail_categories.csv to ', data_save_path)
 fail_categories.to_csv(path_or_buf='../../etl_data/fail_categories.csv', index=False)
 print('Done.')
