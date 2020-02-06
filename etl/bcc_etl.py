@@ -196,3 +196,6 @@ fail_categories['Failure Rate in Percent'] = 100 * fail_categories['Failed Batch
 print('Saving fail_categories.csv to ', data_save_path)
 fail_categories.to_csv(path_or_buf='../../etl_data/fail_categories.csv', index=False)
 print('Done.')
+
+print('NOTE:')
+print('These value tables are cumulative b/c that is what BCC provides. Next steps are to break down into weekly rates.')
