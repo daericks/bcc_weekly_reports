@@ -44,6 +44,11 @@ def importCOAdata(table='totals', file = '20200120_report.xlsx'):
     # Create date column and make dtype=datetime
     date = dateFromFilename(file)
     data_df['Date'] = pd.to_datetime(date)
+
+    # Add 'Tested Batches' to fail_category'
+    if table == 'fail_category':
+        tested_batches = sheet.cell_value(2, 1)
+        data_df['Tested Batches'] = int(tested_batches)
     
     return data_df
 
@@ -182,8 +187,11 @@ fail_categories['Failed Batches'] = fail_categories['Failed Batches'].astype('in
 fc_totals = fail_categories.groupby(by='Date').sum()/2
 fc_totals = removeCol(fc_totals, 'Failed Batches', newname='Total Failed')
 fc_totals['Total Failed'] = fc_totals['Total Failed'].astype('int')
+del fc_totals['Tested Batches']
 fail_categories = fc_totals.merge(fail_categories, left_index=True, right_on='Date', how='right')
 fail_categories['Percent of Failures'] = 100 * fail_categories['Failed Batches'] / fail_categories['Total Failed']
+# Failure Rate in Percent
+fail_categories['Failure Rate in Percent'] = fail_categories['Failed Batches'] / fail_categories['Tested Batches']
 
 print('Saving fail_categories.csv to ', data_save_path)
 fail_categories.to_csv(path_or_buf='../../etl_data/fail_categories.csv', index=False)
