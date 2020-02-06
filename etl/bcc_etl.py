@@ -191,7 +191,7 @@ del fc_totals['Tested Batches']
 fail_categories = fc_totals.merge(fail_categories, left_index=True, right_on='Date', how='right')
 fail_categories['Percent of Failures'] = 100 * fail_categories['Failed Batches'] / fail_categories['Total Failed']
 # Failure Rate in Percent
-fail_categories['Failure Rate in Percent'] = fail_categories['Failed Batches'] / fail_categories['Tested Batches']
+fail_categories['Failure Rate in Percent'] = 100 * fail_categories['Failed Batches'] / fail_categories['Tested Batches']
 
 print('Saving fail_categories.csv to ', data_save_path)
 fail_categories.to_csv(path_or_buf='../../etl_data/fail_categories.csv', index=False)
