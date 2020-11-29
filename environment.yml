@@ -1,0 +1,10 @@
+name: bcc_weekly
+channels:
+  - defaults
+dependencies:
+  - python=3.7
+  - xlrd
+  - jupyter
+  - pandas
+  - pylint
+prefix: /Users/daviderickson/anaconda3/envs/bcc_weekly
